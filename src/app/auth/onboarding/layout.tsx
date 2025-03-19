@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,11 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spot – The Ultimate Productivity Platform",
+  title: "Onboarding – Spot",
   description:
-    "Spot helps you streamline your workflow, boost productivity, and achieve your goals effortlessly. Discover powerful features designed for modern professionals.",
+    "Get started with Spot and discover powerful features designed to streamline your workflow, boost productivity, and achieve your goals effortlessly.",
   keywords: [
     "Spot",
+    "onboarding",
     "SaaS",
     "productivity",
     "AI automation",
@@ -27,19 +28,19 @@ export const metadata: Metadata = {
     "startup",
     "workflow optimization",
   ],
-  authors: [{ name: "Spot Team", url: "https://yourwebsite.com" }],
+  authors: [{ name: "Spot Team", url: "https://spot-us.vercel.app" }],
   creator: "Spot",
   publisher: "Spot Inc.",
-  metadataBase: new URL("https://yourwebsite.com"),
+  metadataBase: new URL("https://spot-us.vercel.app"),
   openGraph: {
-    title: "Spot – The Ultimate Productivity Platform",
+    title: "Onboarding – Spot",
     description:
       "Join thousands of users who trust Spot to improve their workflow and efficiency. Start today and take your productivity to the next level.",
-    url: "https://yourwebsite.com",
+    url: "https://spot-us.vercel.app",
     siteName: "Spot",
     images: [
       {
-        url: "https://yourwebsite.com/og-image.jpg", // Replace later with actual OG image URL
+        url: "https://spot-us.vercel.app/og-image.jpg", // Replace later with actual OG image URL
         width: 1200,
         height: 630,
         alt: "Spot – Your Ultimate Productivity Platform",
@@ -50,10 +51,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spot – The Ultimate Productivity Platform",
+    title: "Onboarding – Spot",
     description:
       "Supercharge your workflow with Spot. Built for efficiency, designed for success. Try it today!",
-    images: ["https://yourwebsite.com/twitter-card.jpg"], // Replace later with actual image URL
+    images: ["https://spot-us.vercel.app/twitter-card.jpg"], // Replace later with actual image URL
     creator: "@yourtwitterhandle", // Replace later with actual Twitter handle
   },
   icons: {
@@ -72,13 +73,30 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        <link rel="preload" href="/fonts/Geist.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/GeistMono.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          href="/fonts/Geist.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/GeistMono.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
 
         <meta name="theme-color" content="#000000" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
+        />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white scrollbar-none`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white scrollbar-none`}
+      >
         {children}
       </body>
     </html>

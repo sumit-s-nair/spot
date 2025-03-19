@@ -4,21 +4,19 @@ import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-import Background from "./components/ui/Background";
-import Hero from "./components/landing/Hero";
-import Header from "./components/Header";
-import Features from "./components/landing/Features";
-import Dashboard from "./components/landing/Dashboard";
-import CTA from "./components/landing/CTA";
-import Footer from "./components/Footer";
+import Background from "@/components/ui/Background";
+import Hero from "@/components/landing/Hero";
+import Header from "@/components/Header";
+import Features from "@/components/landing/Features";
+import Dashboard from "@/components/landing/Dashboard";
+import CTA from "@/components/landing/CTA";
+import Footer from "@/components/Footer";
 
-// Animation Variant for Fade-In & Slide-Up
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-// Custom Hook for Scroll Animation
 function ScrollSection({ children }: { children: React.ReactNode }) {
   const controls = useAnimation();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -28,7 +26,12 @@ function ScrollSection({ children }: { children: React.ReactNode }) {
   }, [controls, inView]);
 
   return (
-    <motion.section ref={ref} initial="hidden" animate={controls} variants={fadeInUp}>
+    <motion.section
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={fadeInUp}
+    >
       {children}
     </motion.section>
   );
