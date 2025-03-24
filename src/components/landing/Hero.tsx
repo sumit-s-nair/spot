@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Button } from "../ui/Button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -25,7 +26,7 @@ export default function Hero() {
         </p>
         <div className="mt-6 flex justify-center space-x-4">
           <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md text-base md:text-lg font-medium transition-transform transform hover:scale-105">
-            Get Started
+            <Link href="/auth/login">Get Started</Link>
           </Button>
           <Button className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg shadow-md text-base md:text-lg font-medium transition-transform transform hover:scale-105">
             Learn More

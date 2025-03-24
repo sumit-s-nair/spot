@@ -24,25 +24,25 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
           <Link
-            href="#"
+            href="/"
             className="text-gray-300 hover:text-white transition-colors duration-200"
           >
             Home
           </Link>
           <Link
-            href="#features"
+            href="/features"
             className="text-gray-300 hover:text-white transition-colors duration-200"
           >
             Features
           </Link>
           <Link
-            href="#pricing"
+            href="/pricing"
             className="text-gray-300 hover:text-white transition-colors duration-200"
           >
             Pricing
           </Link>
           <Link
-            href="#contact"
+            href="/contact"
             className="text-gray-300 hover:text-white transition-colors duration-200"
           >
             Contact
@@ -55,7 +55,7 @@ export default function Header() {
           animate={{ opacity: 1, x: 0 }}
         >
           <Button className="hidden md:block bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md text-sm font-medium transition-transform transform hover:scale-105">
-            Get Started
+            <Link href="/auth/login">Get Started</Link>
           </Button>
         </motion.div>
 
@@ -91,28 +91,28 @@ export default function Header() {
 
         {/* Navigation Links */}
         <Link
-          href="#"
+          href="/"
           className="text-gray-300 hover:text-white text-2xl transition-colors duration-200"
           onClick={() => setMenuOpen(false)}
         >
           Home
         </Link>
         <Link
-          href="#features"
+          href="/features"
           className="text-gray-300 hover:text-white text-2xl transition-colors duration-200"
           onClick={() => setMenuOpen(false)}
         >
           Features
         </Link>
         <Link
-          href="#pricing"
+          href="/pricing"
           className="text-gray-300 hover:text-white text-2xl transition-colors duration-200"
           onClick={() => setMenuOpen(false)}
         >
           Pricing
         </Link>
         <Link
-          href="#contact"
+          href="/contact"
           className="text-gray-300 hover:text-white text-2xl transition-colors duration-200"
           onClick={() => setMenuOpen(false)}
         >
@@ -124,7 +124,7 @@ export default function Header() {
           className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md text-lg font-medium transition-transform transform hover:scale-105"
           onClick={() => setMenuOpen(false)}
         >
-          Get Started
+          <Link href="/auth/login">Get Started</Link>
         </Button>
       </motion.nav>
     </header>
