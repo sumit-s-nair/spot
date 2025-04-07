@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useEffect, useRef, useState } from "react";
 
 import Background from "@/components/ui/Background";
 import Hero from "@/components/landing/Hero";
@@ -12,64 +10,47 @@ import Dashboard from "@/components/landing/Dashboard";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/Footer";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
-
 function ScrollSection({ children }: { children: React.ReactNode }) {
-  const controls = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [controls, inView]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      initial="hidden"
-      animate={controls}
-      variants={fadeInUp}
+      className={`transition-all duration-700 ease-out transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+      }`}
     >
       {children}
-    </motion.section>
+    </section>
   );
 }
 
 export default function LandingPage() {
   return (
     <main className="relative min-h-screen text-white">
-      {/* Background */}
       <Background />
-
-      {/* Header */}
       <Header />
-
-      {/* Hero Section */}
-      <ScrollSection>
-        <Hero />
-      </ScrollSection>
-
-      {/* Features Section */}
-      <ScrollSection>
-        <Features />
-      </ScrollSection>
-
-      {/* How It Works Section */}
-      <ScrollSection>
-        <Dashboard />
-      </ScrollSection>
-
-      {/* Call to Action Section */}
-      <ScrollSection>
-        <CTA />
-      </ScrollSection>
-
-      {/* Footer Section */}
-      <ScrollSection>
-        <Footer />
-      </ScrollSection>
+      <ScrollSection><Hero /></ScrollSection>
+      <ScrollSection><Features /></ScrollSection>
+      <ScrollSection><Dashboard /></ScrollSection>
+      <ScrollSection><CTA /></ScrollSection>
+      <ScrollSection><Footer /></ScrollSection>
     </main>
   );
 }

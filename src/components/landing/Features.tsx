@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Users,
   MessageCircle,
@@ -22,8 +21,7 @@ export default function Features() {
     },
     {
       title: "Seamless Event Management",
-      description:
-        "Submit forms and track event progress directly from the app.",
+      description: "Submit forms and track event progress directly from the app.",
       icon: <Calendar className="text-blue-400 mx-auto" size={40} />,
     },
     {
@@ -44,30 +42,23 @@ export default function Features() {
   ];
 
   return (
-    <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="py-16 px-6 backdrop-blur-md bg-black/20 p-8 rounded-2xl shadow-lg mx-auto w-full max-w-6xl"
-    >
+    <section className="py-16 px-6 backdrop-blur-md bg-black/20 p-8 rounded-2xl shadow-lg mx-auto w-full max-w-6xl transition-opacity duration-1000 opacity-100">
       <h2 className="text-4xl font-extrabold text-center text-white">
         Why Choose Spot?
       </h2>
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {features.map((feature, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="p-8 rounded-2xl bg-black/10 backdrop-blur-lg shadow-lg text-center"
+            className="p-8 rounded-2xl bg-black/10 backdrop-blur-lg shadow-lg text-center transform transition-all duration-500 hover:scale-105 opacity-0 animate-fade-in"
+            style={{ animationDelay: `${index * 0.15}s`, animationFillMode: "forwards" }}
           >
             <div className="mb-4">{feature.icon}</div>
             <h3 className="text-xl font-bold text-white">{feature.title}</h3>
             <p className="mt-4 text-gray-400">{feature.description}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

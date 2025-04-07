@@ -1,16 +1,34 @@
 "use client";
-import { motion } from "framer-motion";
-import { Button } from "../ui/Button";
 import Link from "next/link";
+import { Button } from "../ui/Button";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, []);
+
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[70vh] px-6 text-center pt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-4xl rounded-lg p-8"
+      <div
+        ref={ref}
+        className={`max-w-4xl rounded-lg p-8 transition-all duration-700 ease-out transform ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
       >
         <p className="text-blue-300 text-lg md:text-xl">
           Find Your Perfect Team for Hackathons and Events
@@ -32,7 +50,7 @@ export default function Hero() {
             Learn More
           </Button>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
